@@ -309,13 +309,50 @@ body {
 /* === REVEAL ANIMATION === */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* === HERO ANIMATIONS === */
+.hero-title { perspective: 600px; }
+.hero-line {
+  display: block;
+  transform-origin: left center;
+}
+
+.hero-badge {
+  animation: badgePulse 3s ease infinite;
+}
+@keyframes badgePulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+  50% { box-shadow: 0 0 20px 4px var(--accent-glow); }
+}
+
+/* === APP CARD HOVER GLOW === */
+.app-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: 20px;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(99,102,241,0.1) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.app-card:hover::before { opacity: 1; }
+
+/* === STAT HOVER === */
+.stat { transition: all var(--transition), transform 0.3s; }
+.stat:hover { transform: scale(1.05); }
+
+/* === BRAND HOVER === */
+.brand {
+  transition: all var(--transition);
+  cursor: default;
+}
+.brand:hover { color: var(--text); opacity: 1; }
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
