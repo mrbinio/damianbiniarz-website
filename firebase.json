@@ -1,0 +1,6 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": ["firebase.json", "**/.*", "Curriculum_vitae_D_Biniarz.docx", "README.md"]
+  }
+}

@@ -314,7 +314,12 @@ body {
 }
 .reveal.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) !important;
+}
+
+/* Fallback if JS fails */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; }
 }
 
 /* === HERO ANIMATIONS === */

@@ -26,22 +26,20 @@ if (window.matchMedia('(pointer: fine)').matches) {
 
 // === HERO TEXT ANIMATION ===
 document.addEventListener('DOMContentLoaded', () => {
+  // Show all hero reveals immediately
+  document.querySelectorAll('.hero .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 300 + i * 150);
+  });
+
   const lines = document.querySelectorAll('.hero-line');
   lines.forEach((line, i) => {
     line.style.opacity = '0';
     line.style.transform = 'translateY(60px) rotateX(-15deg)';
-    line.style.transition = `all 1s cubic-bezier(0.16, 1, 0.3, 1) ${0.3 + i * 0.15}s`;
+    line.style.transition = `all 1s cubic-bezier(0.16, 1, 0.3, 1) ${0.2 + i * 0.15}s`;
     setTimeout(() => {
       line.style.opacity = '1';
       line.style.transform = 'translateY(0) rotateX(0)';
-    }, 100);
-  });
-
-  // Animate hero elements sequentially
-  const heroEls = document.querySelectorAll('.hero .reveal');
-  heroEls.forEach((el, i) => {
-    el.style.transitionDelay = (0.6 + i * 0.15) + 's';
-    setTimeout(() => el.classList.add('visible'), 100);
+    }, 50);
   });
 });
 
