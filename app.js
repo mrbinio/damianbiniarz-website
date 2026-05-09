@@ -1,15 +1,5 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// === HERO ANIMATION ===
-gsap.to('.hero-tag', { opacity: 1, y: 0, duration: 0.8, delay: 0.3 });
-gsap.to('.hero-title', { opacity: 1, y: 0, duration: 0.8, delay: 0.5 });
-gsap.to('.hero-sub', { opacity: 1, y: 0, duration: 0.8, delay: 0.7 });
-gsap.to('.hero-btns', { opacity: 1, y: 0, duration: 0.8, delay: 0.9 });
-gsap.to('.hero-astro', { opacity: 1, x: 0, duration: 1, delay: 1.2, ease: 'back.out(2)' });
-
-gsap.set('.hero-tag, .hero-title, .hero-sub, .hero-btns', { y: 40 });
-gsap.set('.hero-astro', { x: 60 });
-
 // === ORB PARALLAX ===
 gsap.to('.orb1', { y: -200, x: 100, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2 } });
 gsap.to('.orb2', { y: 150, x: -80, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 3 } });
