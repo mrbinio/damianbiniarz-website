@@ -1,157 +1,75 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// === HERO ENTRANCE (immediate) ===
-const heroTl = gsap.timeline({ delay: 0.3 });
-heroTl
-  .to('.char', { y: 0, duration: 0.7, stagger: 0.025, ease: 'power4.out' })
-  .to('.hero-tag', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3')
-  .to('.hero-roles', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.2')
-  .to('.hero-cta', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.1')
-  .from('.hero-astro', { x: -100, opacity: 0, duration: 1, ease: 'power3.out' }, 0.5);
+// === HERO ANIMATION ===
+gsap.to('.hero-tag', { opacity: 1, y: 0, duration: 0.8, delay: 0.3 });
+gsap.to('.hero-title', { opacity: 1, y: 0, duration: 0.8, delay: 0.5 });
+gsap.to('.hero-sub', { opacity: 1, y: 0, duration: 0.8, delay: 0.7 });
+gsap.to('.hero-btns', { opacity: 1, y: 0, duration: 0.8, delay: 0.9 });
+gsap.to('.hero-astro', { opacity: 1, x: 0, duration: 1, delay: 1.2, ease: 'back.out(2)' });
 
-gsap.set('.hero-tag, .hero-roles, .hero-cta', { y: 30, opacity: 0 });
+gsap.set('.hero-tag, .hero-title, .hero-sub, .hero-btns', { y: 40 });
+gsap.set('.hero-astro', { x: 60 });
 
-// === HERO SCROLL-LINKED ANIMATIONS ===
-// Title splits apart on scroll
-gsap.to('.hero-title .char-wrap:first-child', {
-  x: -100, opacity: 0,
-  scrollTrigger: { trigger: '.hero', start: '20% top', end: '60% top', scrub: 1 }
-});
-gsap.to('.hero-title .char-wrap:last-child', {
-  x: 100, opacity: 0,
-  scrollTrigger: { trigger: '.hero', start: '20% top', end: '60% top', scrub: 1 }
-});
-  y: -100,
-  scrollTrigger: { trigger: '.hero', start: '30% top', end: '80% top', scrub: 1 }
-});
-gsap.to('.hero-astro', { y: -80, x: 50, scrollTrigger: { trigger: '.hero', start: '20% top', end: '80% top', scrub: 1 } });
-  y: -150, scale: 0.85, rotation: -3,
-  scrollTrigger: { trigger: '.hero', start: '20% top', end: '70% top', scrub: 1 }
-});
+// === ORB PARALLAX ===
+gsap.to('.orb1', { y: -200, x: 100, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2 } });
+gsap.to('.orb2', { y: 150, x: -80, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 3 } });
 
-// === MARQUEE SCROLL SPEED ===
-gsap.to('.marquee-track', {
-  x: '-=500',
-  scrollTrigger: { trigger: '.marquee', start: 'top bottom', end: 'bottom top', scrub: 0.5 }
-});
+// === SCROLL ANIMATIONS ===
+// About
+gsap.from('.about-photo', { x: -60, opacity: 0, duration: 1, scrollTrigger: { trigger: '.about-wrap', start: 'top 75%' } });
+gsap.from('.about-info', { x: 60, opacity: 0, duration: 1, delay: 0.2, scrollTrigger: { trigger: '.about-wrap', start: 'top 75%' } });
 
-// === ABOUT SECTION — PINNED TEXT REVEAL ===
-gsap.from('.about-headline', {
-  y: 80, opacity: 0, duration: 1,
-  scrollTrigger: { trigger: '.about-headline', start: 'top 80%', end: 'top 50%', scrub: 1 }
-});
-gsap.from('.about-body', {
-  y: 60, opacity: 0,
-  scrollTrigger: { trigger: '.about-body', start: 'top 85%', end: 'top 60%', scrub: 1 }
-});
-
-// Stats fly in with rotation
-gsap.utils.toArray('.stat-box').forEach((el, i) => {
-  gsap.from(el, {
-    y: 80, opacity: 0, rotation: 5 * (i % 2 === 0 ? 1 : -1), scale: 0.8,
-    scrollTrigger: { trigger: el, start: 'top 90%', end: 'top 65%', scrub: 1 }
+// App cards
+gsap.utils.toArray('.app-card').forEach((card, i) => {
+  gsap.from(card, {
+    y: 60, opacity: 0, scale: 0.95, rotation: -2 + i * 2,
+    duration: 0.8, delay: i * 0.15,
+    scrollTrigger: { trigger: card, start: 'top 85%' }
   });
 });
 
-// === APPS — CARDS SCALE UP FROM SMALL ===
-gsap.utils.toArray('.app-card').forEach((el, i) => {
+// Experience items
+gsap.utils.toArray('.exp').forEach((el, i) => {
   gsap.from(el, {
-    y: 100, opacity: 0, scale: 0.7, rotation: -2 + i * 2,
-    scrollTrigger: { trigger: el, start: 'top 95%', end: 'top 60%', scrub: 1 }
+    x: -50, opacity: 0, duration: 0.6, delay: i * 0.1,
+    scrollTrigger: { trigger: el, start: 'top 88%' }
   });
 });
 
-// === EXPERIENCE — SLIDE FROM LEFT WITH STAGGER ===
-gsap.utils.toArray('.exp-item').forEach((el, i) => {
-  gsap.from(el, {
-    x: -100, opacity: 0,
-    scrollTrigger: { trigger: el, start: 'top 90%', end: 'top 70%', scrub: 1 }
-  });
+// Contact
+gsap.from('.big-text', { scale: 0.7, opacity: 0, duration: 1, scrollTrigger: { trigger: '.big-text', start: 'top 80%' } });
+gsap.from('.contact-btns', { y: 30, opacity: 0, duration: 0.6, delay: 0.3, scrollTrigger: { trigger: '.contact-btns', start: 'top 85%' } });
+
+// Section labels
+gsap.utils.toArray('.label').forEach(el => {
+  gsap.from(el, { x: -30, opacity: 0, duration: 0.6, scrollTrigger: { trigger: el, start: 'top 85%' } });
 });
 
-// === CONTACT — BIG TEXT SCALES ===
-gsap.from('.contact-big', {
-  scale: 0.3, opacity: 0, rotation: -5,
-  scrollTrigger: { trigger: '.contact-big', start: 'top 90%', end: 'top 50%', scrub: 1 }
-});
-
-// === SECTION HEADERS ===
-gsap.utils.toArray('.section-header').forEach(el => {
-  gsap.from(el, {
-    x: -60, opacity: 0,
-    scrollTrigger: { trigger: el, start: 'top 85%', end: 'top 65%', scrub: 1 }
-  });
-});
-
-// === PARALLAX ORBS ===
-gsap.to('.orb-1', { y: -300, rotation: 45, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2 } });
-gsap.to('.orb-2', { y: 200, x: -100, rotation: -30, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 3 } });
-gsap.to('.orb-3', { y: -150, x: 80, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2.5 } });
-
-// === GRID BG PARALLAX ===
-gsap.to('.grid-bg', {
-  backgroundPosition: '0px -200px',
-  scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1 }
-});
-
-// === COUNTER ANIMATION ===
+// === COUNTERS ===
 document.querySelectorAll('[data-count]').forEach(el => {
   const target = parseInt(el.dataset.count);
   ScrollTrigger.create({
     trigger: el, start: 'top 85%',
     onEnter: () => {
-      let obj = { val: 0 };
-      gsap.to(obj, { val: target, duration: 2, ease: 'power2.out', onUpdate: () => { el.textContent = Math.round(obj.val); } });
+      let obj = { v: 0 };
+      gsap.to(obj, { v: target, duration: 1.5, ease: 'power2.out', onUpdate: () => { el.textContent = Math.round(obj.v); } });
     }, once: true
   });
 });
 
-// === NAV HIDE/SHOW ===
-let lastY = 0;
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.style.transform = (window.scrollY > lastY && window.scrollY > 100) ? 'translateY(-100%)' : 'translateY(0)';
-  lastY = window.scrollY;
-});
-
-// === MOUSE PARALLAX ON HERO ===
-document.querySelector('.hero')?.addEventListener('mousemove', (e) => {
-  const x = (e.clientX / window.innerWidth - 0.5) * 40;
-  const y = (e.clientY / window.innerHeight - 0.5) * 40;
-  
-  
-  gsap.to('.orb-1', { x: x * 1.5, y: y * 1.5, duration: 2 });
-});
-
-// === APP CARD GLOW ===
-document.querySelectorAll('.app-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    const glow = card.querySelector('.app-card-glow');
-    if (glow) { glow.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(124,92,252,0.15) 0%, transparent 50%)`; glow.style.opacity = '1'; }
-  });
-  card.addEventListener('mouseleave', () => { card.querySelector('.app-card-glow').style.opacity = '0'; });
-});
-
 // === LANGUAGE ===
-let currentLang = 'en';
 document.querySelectorAll('.lang-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    currentLang = btn.dataset.lang;
+    const lang = btn.dataset.lang;
     document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     document.querySelectorAll('[data-en]').forEach(el => {
-      el.innerHTML = el.getAttribute(`data-${currentLang}`) || el.getAttribute('data-en');
+      el.innerHTML = el.getAttribute('data-' + lang) || el.getAttribute('data-en');
     });
   });
 });
 
 // === SMOOTH SCROLL ===
 document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
-  });
+  a.addEventListener('click', e => { e.preventDefault(); document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' }); });
 });

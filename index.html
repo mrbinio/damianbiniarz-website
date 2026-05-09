@@ -4,27 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Damian Biniarz — Cybersecurity Leader & App Creator</title>
-  <meta name="description" content="Cybersecurity leader with 17+ years of experience. Building smart AI-powered apps.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="astronaut.png">
 </head>
 <body>
-  <!-- Animated grid background -->
-  <div class="grid-bg"></div>
-  <!-- Gradient orbs -->
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-
-  <!-- Navigation -->
-  <nav class="nav" id="nav">
-    <div class="nav-logo">
-      <img src="astronaut.png" alt="" class="nav-astro">
-      <span>DB</span>
-    </div>
+  <nav class="nav">
+    <div class="nav-logo"><img src="astronaut.png" alt="" class="nav-icon"><span>DB</span></div>
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#apps">Apps</a>
@@ -38,180 +26,98 @@
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section class="hero" id="hero">
-    <!-- Animated scene background -->
-    <div class="scene">
-      <div class="scene-grid"></div>
-      <div class="scene-particles" id="particles"></div>
-      <div class="scene-code code-1">&lt;secure /&gt;</div>
-      <div class="scene-code code-2">{ encrypted }</div>
-      <div class="scene-code code-3">firewall.on()</div>
-      <div class="scene-code code-4">auth: true</div>
-      <div class="scene-code code-5">AI.deploy()</div>
-      <div class="scene-shield shield-1">🛡️</div>
-      <div class="scene-shield shield-2">🔒</div>
-      <div class="scene-shield shield-3">⚡</div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="gradient-orb orb1"></div>
+      <div class="gradient-orb orb2"></div>
     </div>
-
-    <!-- Person in scene - moved to About -->
-
-    <!-- Astronaut floating -->
-    <div class="hero-astro">
-      <img src="astronaut.png" alt="">
-    </div>
-
-    <!-- Text overlay -->
-    <div class="hero-overlay">
-      <div class="hero-tag">
-        <span class="tag-dot"></span>
-        <span data-en="Available for consulting" data-pl="Dostępny na konsultacje" data-sv="Tillgänglig för konsulting">Available for consulting</span>
-      </div>
-      <h1 class="hero-title" id="heroTitle">
-        <span class="char-wrap"><span class="char">D</span><span class="char">a</span><span class="char">m</span><span class="char">i</span><span class="char">a</span><span class="char">n</span></span>
-        <span class="char-wrap"><span class="char">B</span><span class="char">i</span><span class="char">n</span><span class="char">i</span><span class="char">a</span><span class="char">r</span><span class="char">z</span><span class="char dot-char">.</span></span>
-      </h1>
-      <div class="hero-roles" id="heroRoles">
-        <span class="role" data-en="Cybersecurity Leader" data-pl="Lider Cyberbezpieczeństwa" data-sv="Cybersäkerhetsledare">Cybersecurity Leader</span>
-        <span class="role-sep">/</span>
-        <span class="role" data-en="App Creator" data-pl="Twórca Aplikacji" data-sv="Appskapare">App Creator</span>
-        <span class="role-sep">/</span>
-        <span class="role" data-en="AI Enthusiast" data-pl="Entuzjasta AI" data-sv="AI-entusiast">AI Enthusiast</span>
-      </div>
-      <div class="hero-cta">
-        <a href="#apps" class="btn-main"><span>Explore Apps</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="https://www.linkedin.com/in/damianbiniarz/" target="_blank" class="btn-outline">LinkedIn</a>
+    <div class="hero-inner">
+      <p class="hero-tag" data-en="Cybersecurity · AI · Apps" data-pl="Cyberbezpieczeństwo · AI · Aplikacje" data-sv="Cybersäkerhet · AI · Appar">Cybersecurity · AI · Apps</p>
+      <h1 class="hero-title">Damian Biniarz<span class="dot">.</span></h1>
+      <p class="hero-sub" data-en="Cybersecurity leader with 17+ years of experience. Building AI-powered apps for everyday life." data-pl="Lider cyberbezpieczeństwa z 17+ latami doświadczenia. Buduję aplikacje z AI na co dzień." data-sv="Cybersäkerhetsledare med 17+ års erfarenhet. Bygger AI-drivna appar för vardagen.">Cybersecurity leader with 17+ years of experience. Building AI-powered apps for everyday life.</p>
+      <div class="hero-btns">
+        <a href="#apps" class="btn-primary">Explore Apps</a>
+        <a href="https://www.linkedin.com/in/damianbiniarz/" target="_blank" class="btn-ghost">LinkedIn →</a>
       </div>
     </div>
-
-    <div class="scroll-indicator">
-      <span>SCROLL</span>
-      <div class="scroll-bar"><div class="scroll-progress"></div></div>
-    </div>
+    <div class="hero-astro"><img src="astronaut.png" alt=""></div>
   </section>
 
-  <!-- Marquee -->
-  <div class="marquee">
-    <div class="marquee-track">
-      <span>CISSP</span><span>ISO 27001</span><span>NIST</span><span>Penetration Testing</span>
-      <span>Risk Assessment</span><span>AI / GenAI</span><span>R&D Security</span><span>Incident Response</span>
-      <span>CISSP</span><span>ISO 27001</span><span>NIST</span><span>Penetration Testing</span>
-      <span>Risk Assessment</span><span>AI / GenAI</span><span>R&D Security</span><span>Incident Response</span>
-    </div>
-  </div>
-
-  <!-- About -->
+  <!-- ABOUT -->
   <section class="section" id="about">
     <div class="container">
-      <div class="section-header">
-        <span class="section-num">01</span>
-        <div class="section-line"></div>
-        <h2 class="section-title" data-en="About" data-pl="O Mnie" data-sv="Om Mig">About</h2>
-      </div>
-      <div class="about-grid">
-        <div class="about-photo">
-          <img src="damian-nobg.png" alt="Damian Biniarz" class="about-img">
-        </div>
-        <div class="about-left">
-          <h3 class="about-headline" data-en="I secure systems by day and build apps by night." data-pl="W dzień zabezpieczam systemy, w nocy buduję aplikacje." data-sv="Jag säkrar system på dagen och bygger appar på natten.">I secure systems by day and build apps by night.</h3>
-          <p class="about-body" data-en="Currently R&D Cybersecurity Leader at Ericsson — advising senior stakeholders on security strategy, coordinating incidents, and driving security assurance across engineering teams." data-pl="Obecnie Lider Cyberbezpieczeństwa R&D w Ericsson — doradzam kadrze zarządzającej, koordynuję incydenty i prowadzę zapewnienie bezpieczeństwa w zespołach inżynieryjnych." data-sv="Just nu R&D Cybersäkerhetsledare på Ericsson — rådger ledningen om säkerhetsstrategi, koordinerar incidenter och driver säkerhetsarbete i ingenjörsteam.">Currently R&D Cybersecurity Leader at Ericsson — advising senior stakeholders on security strategy, coordinating incidents, and driving security assurance across engineering teams.</p>
-          <div class="stat-row">
-            <div class="stat-box"><span class="stat-val" data-count="17">0</span><span class="stat-plus">+</span><span class="stat-lbl" data-en="Years" data-pl="Lat" data-sv="År">Years</span></div>
-            <div class="stat-box"><span class="stat-val">CISSP</span><span class="stat-lbl" data-en="Certified" data-pl="Certyfikat" data-sv="Cert.">Certified</span></div>
-            <div class="stat-box"><span class="stat-val" data-count="5">0</span><span class="stat-plus">+</span><span class="stat-lbl" data-en="Companies" data-pl="Firm" data-sv="Företag">Companies</span></div>
-            <div class="stat-box"><span class="stat-val" data-count="3">0</span><span class="stat-plus"></span><span class="stat-lbl" data-en="Apps" data-pl="Aplikacje" data-sv="Appar">Apps</span></div>
+      <span class="label">01 — About</span>
+      <div class="about-wrap">
+        <div class="about-photo"><img src="damian-nobg.png" alt="Damian Biniarz"></div>
+        <div class="about-info">
+          <h2 data-en="I secure systems by day and build apps by night." data-pl="W dzień zabezpieczam systemy, w nocy buduję aplikacje." data-sv="Jag säkrar system på dagen och bygger appar på natten.">I secure systems by day and build apps by night.</h2>
+          <p data-en="R&D Cybersecurity Leader at Ericsson. Previously at Fujitsu, DXC Technology, and Capgemini. CISSP certified." data-pl="Lider Cyberbezpieczeństwa R&D w Ericsson. Wcześniej Fujitsu, DXC Technology i Capgemini. Certyfikat CISSP." data-sv="R&D Cybersäkerhetsledare på Ericsson. Tidigare Fujitsu, DXC Technology och Capgemini. CISSP-certifierad.">R&D Cybersecurity Leader at Ericsson. Previously at Fujitsu, DXC Technology, and Capgemini. CISSP certified.</p>
+          <div class="stats">
+            <div class="stat"><strong data-count="17">0</strong><span>+ years</span></div>
+            <div class="stat"><strong>CISSP</strong><span>certified</span></div>
+            <div class="stat"><strong data-count="5">0</strong><span>+ companies</span></div>
+            <div class="stat"><strong data-count="3">0</strong><span>apps</span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Apps -->
-  <section class="section section-alt" id="apps">
+  <!-- APPS -->
+  <section class="section section-dark" id="apps">
     <div class="container">
-      <div class="section-header">
-        <span class="section-num">02</span>
-        <div class="section-line"></div>
-        <h2 class="section-title" data-en="Apps" data-pl="Aplikacje" data-sv="Appar">Apps</h2>
-      </div>
+      <span class="label">02 — Apps</span>
+      <h2 class="section-heading" data-en="AI-powered tools for real life" data-pl="Narzędzia AI na co dzień" data-sv="AI-verktyg för vardagen">AI-powered tools for real life</h2>
       <div class="apps-grid">
         <a href="https://homefresh.damianbiniarz.com" target="_blank" class="app-card">
-          <div class="app-card-glow"></div>
-          <div class="app-icon">🍽️</div>
+          <div class="app-emoji">🍽️</div>
           <h3>HomeFresh</h3>
-          <p data-en="AI meal planner — recipes, fridge matching, grill mode" data-pl="Planer posiłków z AI — przepisy, lodówka, grill" data-sv="AI-måltidsplanerare — recept, kylmatchning, grillläge">AI meal planner — recipes, fridge matching, grill mode</p>
-          <span class="app-badge live">Live ↗</span>
+          <p data-en="AI meal planner — recipes, fridge matching, weekly plans, grill mode." data-pl="Planer posiłków z AI — przepisy, lodówka, plany, grill." data-sv="AI-måltidsplanerare — recept, kylmatchning, veckoplan, grill.">AI meal planner — recipes, fridge matching, weekly plans, grill mode.</p>
+          <span class="badge live">Live</span>
         </a>
         <a href="https://dive.damianbiniarz.com" target="_blank" class="app-card">
-          <div class="app-card-glow"></div>
-          <div class="app-icon">🤿</div>
+          <div class="app-emoji">🤿</div>
           <h3>DiveLog</h3>
-          <p data-en="Scuba diving logbook & certification tracker" data-pl="Dziennik nurkowy i tracker certyfikatów" data-sv="Dykloggbok & certifikatspårare">Scuba diving logbook & certification tracker</p>
-          <span class="app-badge live">Live ↗</span>
+          <p data-en="Scuba diving logbook & certification tracker." data-pl="Dziennik nurkowy i tracker certyfikatów." data-sv="Dykloggbok & certifikatspårare.">Scuba diving logbook & certification tracker.</p>
+          <span class="badge live">Live</span>
         </a>
         <a href="https://gym.damianbiniarz.com" target="_blank" class="app-card">
-          <div class="app-card-glow"></div>
-          <div class="app-icon">💪</div>
+          <div class="app-emoji">💪</div>
           <h3>GymTrack</h3>
-          <p data-en="AI fitness companion & workout planner" data-pl="Asystent fitness z AI i planer treningów" data-sv="AI-fitnessassistent & träningsplanerare">AI fitness companion & workout planner</p>
-          <span class="app-badge live">Live ↗</span>
+          <p data-en="AI fitness companion & workout planner." data-pl="Asystent fitness z AI i planer treningów." data-sv="AI-fitnessassistent & träningsplanerare.">AI fitness companion & workout planner.</p>
+          <span class="badge live">Live</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Experience -->
+  <!-- EXPERIENCE -->
   <section class="section" id="experience">
     <div class="container">
-      <div class="section-header">
-        <span class="section-num">03</span>
-        <div class="section-line"></div>
-        <h2 class="section-title" data-en="Experience" data-pl="Doświadczenie" data-sv="Erfarenhet">Experience</h2>
-      </div>
-      <div class="exp-grid">
-        <div class="exp-item">
-          <div class="exp-year">2022 — Now</div>
-          <h4 class="exp-role">R&D Cybersecurity Leader</h4>
-          <span class="exp-company">Ericsson</span>
-        </div>
-        <div class="exp-item">
-          <div class="exp-year">2018 — 2022</div>
-          <h4 class="exp-role">Senior Information Security Manager</h4>
-          <span class="exp-company">Fujitsu</span>
-        </div>
-        <div class="exp-item">
-          <div class="exp-year">2017 — 2018</div>
-          <h4 class="exp-role">Senior Security Specialist</h4>
-          <span class="exp-company">DXC Technology</span>
-        </div>
-        <div class="exp-item">
-          <div class="exp-year">2016 — 2017</div>
-          <h4 class="exp-role">Cyber Security Consultant</h4>
-          <span class="exp-company">Capgemini</span>
-        </div>
-        <div class="exp-item">
-          <div class="exp-year">2011 — 2016</div>
-          <h4 class="exp-role">Security Verification Specialist</h4>
-          <span class="exp-company">Ericsson</span>
-        </div>
+      <span class="label">03 — Experience</span>
+      <div class="exp-list">
+        <div class="exp"><span class="exp-date">2022 — Now</span><span class="exp-title">R&D Cybersecurity Leader</span><span class="exp-co">Ericsson</span></div>
+        <div class="exp"><span class="exp-date">2018 — 2022</span><span class="exp-title">Senior Information Security Manager</span><span class="exp-co">Fujitsu</span></div>
+        <div class="exp"><span class="exp-date">2017 — 2018</span><span class="exp-title">Senior Security Specialist</span><span class="exp-co">DXC Technology</span></div>
+        <div class="exp"><span class="exp-date">2016 — 2017</span><span class="exp-title">Cyber Security Consultant</span><span class="exp-co">Capgemini</span></div>
+        <div class="exp"><span class="exp-date">2011 — 2016</span><span class="exp-title">Security Verification Specialist</span><span class="exp-co">Ericsson</span></div>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section class="section section-alt" id="contact">
+  <!-- CONTACT -->
+  <section class="section section-dark" id="contact">
     <div class="container contact-center">
-      <h2 class="contact-big" data-en="Let's talk." data-pl="Porozmawiajmy." data-sv="Låt oss prata.">Let's talk.</h2>
-      <div class="contact-links">
-        <a href="https://www.linkedin.com/in/damianbiniarz/" target="_blank" class="c-link">LinkedIn ↗</a>
-        <a href="mailto:damianbiniarz@gmail.com" class="c-link">Email ↗</a>
+      <h2 class="big-text" data-en="Let's talk." data-pl="Porozmawiajmy." data-sv="Låt oss prata.">Let's talk.</h2>
+      <div class="contact-btns">
+        <a href="https://www.linkedin.com/in/damianbiniarz/" target="_blank" class="btn-primary">LinkedIn</a>
+        <a href="mailto:damianbiniarz@gmail.com" class="btn-ghost">Email</a>
       </div>
     </div>
   </section>
 
-  <footer class="footer">
-    <p>© 2026 Damian Biniarz</p>
-  </footer>
+  <footer class="footer"><p>© 2026 Damian Biniarz</p></footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
