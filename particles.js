@@ -81,15 +81,6 @@
   var particles = new THREE.Points(geometry, material);
   scene.add(particles);
 
-  // Astronaut image as transparent texture in center of particles
-  var textureLoader = new THREE.TextureLoader();
-  textureLoader.load('astronaut.png', function(texture) {
-    var astroMat = new THREE.SpriteMaterial({ map: texture, transparent: true, opacity: 0.12 });
-    var astroSprite = new THREE.Sprite(astroMat);
-    astroSprite.scale.set(2, 2, 1);
-    scene.add(astroSprite);
-  });
-
   // On mobile, push particles to the side and make smaller
   var isMobile = window.innerWidth < 768;
   if (isMobile) {
