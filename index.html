@@ -4,23 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Damian Biniarz — Cybersecurity Leader & App Creator</title>
-  <meta name="description" content="Cybersecurity leader with 17+ years of experience. Building smart apps for everyday life.">
+  <meta name="description" content="Cybersecurity leader with 17+ years of experience. Building smart AI-powered apps.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+  <link rel="icon" href="astronaut.png">
 </head>
 <body>
-  <!-- Cursor glow -->
-  <div class="cursor-glow" id="cursorGlow"></div>
+  <!-- Stars canvas -->
+  <canvas id="stars"></canvas>
 
   <!-- Navigation -->
-  <nav class="nav">
-    <a href="#" class="nav-logo">DB</a>
+  <nav class="nav" id="nav">
+    <div class="nav-logo">
+      <img src="astronaut.png" alt="" class="nav-astro">
+      <span>DB</span>
+    </div>
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#apps">Apps</a>
+      <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
     </div>
     <div class="nav-lang">
@@ -32,105 +36,180 @@
 
   <!-- Hero -->
   <section class="hero" id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <div class="hero-badge reveal">Cybersecurity · Management · Apps</div>
-      <h1 class="hero-title reveal">
-        <span class="hero-line">Damian</span>
-        <span class="hero-line">Biniarz<span class="hero-dot">.</span></span>
+    <div class="hero-left">
+      <div class="hero-badge" data-en="Cybersecurity · AI · Apps" data-pl="Cyberbezpieczeństwo · AI · Aplikacje" data-sv="Cybersäkerhet · AI · Appar">Cybersecurity · AI · Apps</div>
+      <h1 class="hero-title">
+        <span class="line"><span class="line-inner">Damian</span></span>
+        <span class="line"><span class="line-inner">Biniarz<span class="dot">.</span></span></span>
       </h1>
-      <p class="hero-subtitle reveal" data-en="Cybersecurity leader with 17+ years of experience protecting enterprise systems. Building smart apps on the side." data-pl="Lider cyberbezpieczeństwa z 17+ latami doświadczenia w ochronie systemów enterprise. Tworzę inteligentne aplikacje." data-sv="Cybersäkerhetsledare med 17+ års erfarenhet av att skydda företagssystem. Bygger smarta appar vid sidan av.">Cybersecurity leader with 17+ years of experience protecting enterprise systems. Building smart apps on the side.</p>
-      <div class="hero-cta reveal">
-        <a href="#apps" class="btn btn-primary">Explore Apps</a>
-        <a href="#about" class="btn btn-ghost">Learn More</a>
+      <p class="hero-sub" data-en="Cybersecurity leader by day. App creator by night. 17+ years protecting enterprise systems at Ericsson, now building AI-powered tools for everyday life." data-pl="Lider cyberbezpieczeństwa w dzień. Twórca aplikacji w nocy. 17+ lat ochrony systemów enterprise w Ericsson, teraz buduję narzędzia AI na co dzień." data-sv="Cybersäkerhetsledare på dagen. Appskapare på natten. 17+ år av att skydda företagssystem på Ericsson, nu bygger jag AI-drivna verktyg för vardagen.">Cybersecurity leader by day. App creator by night. 17+ years protecting enterprise systems at Ericsson, now building AI-powered tools for everyday life.</p>
+      <div class="hero-btns">
+        <a href="#apps" class="btn-main">View Apps</a>
+        <a href="https://www.linkedin.com/in/damianbiniarz/" target="_blank" class="btn-outline">LinkedIn →</a>
       </div>
     </div>
-    <div class="hero-scroll">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
+    <div class="hero-right">
+      <div class="hero-img-wrap">
+        <img src="damian biniarz.png" alt="Damian Biniarz" class="hero-img">
+        <div class="hero-img-ring"></div>
+        <div class="hero-img-ring ring-2"></div>
+      </div>
+      <img src="astronaut.png" alt="" class="floating-astro">
     </div>
   </section>
+
+  <!-- Marquee -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>CISSP</span><span>·</span>
+      <span>Ericsson</span><span>·</span>
+      <span>ISO 27001</span><span>·</span>
+      <span>NIST</span><span>·</span>
+      <span>AI / GenAI</span><span>·</span>
+      <span>Penetration Testing</span><span>·</span>
+      <span>Risk Assessment</span><span>·</span>
+      <span>R&D Security</span><span>·</span>
+      <span>CISSP</span><span>·</span>
+      <span>Ericsson</span><span>·</span>
+      <span>ISO 27001</span><span>·</span>
+      <span>NIST</span><span>·</span>
+      <span>AI / GenAI</span><span>·</span>
+      <span>Penetration Testing</span><span>·</span>
+      <span>Risk Assessment</span><span>·</span>
+      <span>R&D Security</span><span>·</span>
+    </div>
+  </div>
 
   <!-- About -->
   <section class="section" id="about">
     <div class="container">
-      <h2 class="section-label reveal">About</h2>
-      <div class="about-grid">
-        <div class="about-text reveal">
-          <h3 class="about-title" data-en="Security by day.<br>Code by night." data-pl="Bezpieczeństwo w dzień.<br>Kod w nocy." data-sv="Säkerhet på dagen.<br>Kod på natten.">Security by day.<br>Code by night.</h3>
-          <p data-en="R&D Cybersecurity Leader at Ericsson, previously at Fujitsu, DXC, and Capgemini. I protect critical infrastructure and advise senior stakeholders on security strategy." data-pl="Lider Cyberbezpieczeństwa R&D w Ericsson, wcześniej Fujitsu, DXC i Capgemini. Chronię infrastrukturę krytyczną i doradzam kadrze zarządzającej w strategii bezpieczeństwa." data-sv="R&D Cybersäkerhetsledare på Ericsson, tidigare på Fujitsu, DXC och Capgemini. Jag skyddar kritisk infrastruktur och rådger ledningen om säkerhetsstrategi.">R&D Cybersecurity Leader at Ericsson, previously at Fujitsu, DXC, and Capgemini. I protect critical infrastructure and advise senior stakeholders on security strategy.</p>
-          <p data-en="Outside work, I build AI-powered apps that solve real problems — meal planning, dive logging, fitness tracking." data-pl="Po pracy tworzę aplikacje z AI, które rozwiązują realne problemy — planowanie posiłków, logowanie nurkowań, śledzenie treningów." data-sv="Utanför jobbet bygger jag AI-drivna appar som löser verkliga problem — måltidsplanering, dykloggning, träningsspårning.">Outside work, I build AI-powered apps that solve real problems — meal planning, dive logging, fitness tracking.</p>
-        </div>
-        <div class="about-stats reveal">
-          <div class="stat">
-            <span class="stat-number">17+</span>
-            <span class="stat-label" data-en="Years in Security" data-pl="Lat w Security" data-sv="År inom säkerhet">Years in Security</span>
-          </div>
-          <div class="stat">
-            <span class="stat-number">CISSP</span>
-            <span class="stat-label" data-en="Certified Professional" data-pl="Certyfikowany Profesjonalista" data-sv="Certifierad Professionell">Certified Professional</span>
-          </div>
-          <div class="stat">
-            <span class="stat-number">3+</span>
-            <span class="stat-label" data-en="Apps Built" data-pl="Zbudowane Aplikacje" data-sv="Byggda Appar">Apps Built</span>
-          </div>
-          <div class="stat">
-            <span class="stat-number">AI</span>
-            <span class="stat-label" data-en="Powered Solutions" data-pl="Rozwiązania z AI" data-sv="Drivna Lösningar">Powered Solutions</span>
-          </div>
-        </div>
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title" data-en="About Me" data-pl="O Mnie" data-sv="Om Mig">About Me</h2>
       </div>
-      <div class="about-brands reveal">
-        <span class="brand">Ericsson</span>
-        <span class="brand">Fujitsu</span>
-        <span class="brand">DXC Technology</span>
-        <span class="brand">Capgemini</span>
-        <span class="brand">Nokia Siemens</span>
+      <div class="about-content">
+        <div class="about-text">
+          <p class="about-lead" data-en="I protect what matters — from enterprise infrastructure to the apps I build for my family." data-pl="Chronię to, co ważne — od infrastruktury enterprise po aplikacje, które buduję dla rodziny." data-sv="Jag skyddar det som är viktigt — från företagsinfrastruktur till apparna jag bygger för min familj.">I protect what matters — from enterprise infrastructure to the apps I build for my family.</p>
+          <p data-en="Currently R&D Cybersecurity Leader at Ericsson, advising senior stakeholders on security strategy, risk assessments, and incident coordination. Previously at Fujitsu, DXC Technology, and Capgemini." data-pl="Obecnie Lider Cyberbezpieczeństwa R&D w Ericsson, doradzam kadrze zarządzającej w strategii bezpieczeństwa, ocenie ryzyka i koordynacji incydentów. Wcześniej w Fujitsu, DXC Technology i Capgemini." data-sv="Just nu R&D Cybersäkerhetsledare på Ericsson, rådger ledningen om säkerhetsstrategi, riskbedömningar och incidentkoordinering. Tidigare på Fujitsu, DXC Technology och Capgemini.">Currently R&D Cybersecurity Leader at Ericsson, advising senior stakeholders on security strategy, risk assessments, and incident coordination. Previously at Fujitsu, DXC Technology, and Capgemini.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-num" data-count="17">0</div>
+            <div class="stat-label" data-en="Years Experience" data-pl="Lat Doświadczenia" data-sv="Års Erfarenhet">Years Experience</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">CISSP</div>
+            <div class="stat-label" data-en="Certified" data-pl="Certyfikat" data-sv="Certifierad">Certified</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" data-count="5">0</div>
+            <div class="stat-label" data-en="Companies" data-pl="Firm" data-sv="Företag">Companies</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" data-count="3">0</div>
+            <div class="stat-label" data-en="Apps Built" data-pl="Aplikacji" data-sv="Appar">Apps Built</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Apps -->
-  <section class="section section-dark" id="apps">
+  <section class="section section-alt" id="apps">
     <div class="container">
-      <h2 class="section-label reveal">Apps</h2>
-      <h3 class="apps-title reveal" data-en="Smart tools for everyday life" data-pl="Inteligentne narzędzia na co dzień" data-sv="Smarta verktyg för vardagen">Smart tools for everyday life</h3>
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title" data-en="My Apps" data-pl="Moje Aplikacje" data-sv="Mina Appar">My Apps</h2>
+      </div>
+      <p class="section-sub" data-en="AI-powered tools I build for real life problems" data-pl="Narzędzia AI, które buduję do rozwiązywania realnych problemów" data-sv="AI-drivna verktyg jag bygger för verkliga problem">AI-powered tools I build for real life problems</p>
       <div class="apps-grid">
-        <a href="https://homefresh.damianbiniarz.com" class="app-card reveal" target="_blank">
-          <div class="app-icon" style="background: linear-gradient(135deg, #2E7D32, #66BB6A)">🍽️</div>
-          <h4>HomeFresh</h4>
-          <p data-en="AI meal planner. Recipes, fridge matching, weekly plans, grill mode. PL/SV bilingual." data-pl="Planer posiłków z AI. Przepisy, lodówka, plany tygodniowe, tryb grillowy. PL/SV." data-sv="AI-måltidsplanerare. Recept, kylmatchning, veckoplan, grillläge. PL/SV.">AI meal planner. Recipes, fridge matching, weekly plans, grill mode. PL/SV bilingual.</p>
-          <span class="app-tag">Live</span>
+        <a href="https://homefresh.damianbiniarz.com" target="_blank" class="app-card">
+          <div class="app-card-glow"></div>
+          <div class="app-icon">🍽️</div>
+          <h3>HomeFresh</h3>
+          <p data-en="AI meal planner — recipes, fridge matching, weekly plans, grill mode. Bilingual PL/SV." data-pl="Planer posiłków z AI — przepisy, lodówka, plany tygodniowe, grill. Dwujęzyczny PL/SV." data-sv="AI-måltidsplanerare — recept, kylmatchning, veckoplan, grillläge. Tvåspråkig PL/SV.">AI meal planner — recipes, fridge matching, weekly plans, grill mode. Bilingual PL/SV.</p>
+          <span class="app-status live">Live</span>
         </a>
-        <a href="#" class="app-card reveal">
-          <div class="app-icon" style="background: linear-gradient(135deg, #1565C0, #42A5F5)">🤿</div>
-          <h4>DiveLog</h4>
-          <p data-en="Scuba diving logbook. Track dives, gear, certifications. Sync across devices." data-pl="Dziennik nurkowy. Śledź nurkowania, sprzęt, certyfikaty. Synchronizacja." data-sv="Dykloggbok. Spåra dyk, utrustning, certifikat. Synka mellan enheter.">Scuba diving logbook. Track dives, gear, certifications. Sync across devices.</p>
-          <span class="app-tag soon">Coming Soon</span>
-        </a>
-        <a href="#" class="app-card reveal">
-          <div class="app-icon" style="background: linear-gradient(135deg, #E65100, #FF9800)">💪</div>
-          <h4>GymTrack</h4>
-          <p data-en="AI fitness companion. Workout plans, progress tracking, form tips." data-pl="Asystent fitness z AI. Plany treningowe, śledzenie postępów, porady." data-sv="AI-fitnessassistent. Träningsplaner, framstegsspårning, formtips.">AI fitness companion. Workout plans, progress tracking, form tips.</p>
-          <span class="app-tag soon">Coming Soon</span>
-        </a>
+        <div class="app-card">
+          <div class="app-card-glow"></div>
+          <div class="app-icon">🤿</div>
+          <h3>DiveLog</h3>
+          <p data-en="Scuba diving logbook — track dives, gear, certifications, dive sites." data-pl="Dziennik nurkowy — nurkowania, sprzęt, certyfikaty, miejsca." data-sv="Dykloggbok — spåra dyk, utrustning, certifikat, dykplatser.">Scuba diving logbook — track dives, gear, certifications, dive sites.</p>
+          <span class="app-status">Coming Soon</span>
+        </div>
+        <div class="app-card">
+          <div class="app-card-glow"></div>
+          <div class="app-icon">💪</div>
+          <h3>GymTrack</h3>
+          <p data-en="AI fitness companion — workout plans, progress tracking, form guidance." data-pl="Asystent fitness z AI — plany treningowe, postępy, porady." data-sv="AI-fitnessassistent — träningsplaner, framsteg, formtips.">AI fitness companion — workout plans, progress tracking, form guidance.</p>
+          <span class="app-status">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title" data-en="Experience" data-pl="Doświadczenie" data-sv="Erfarenhet">Experience</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2022 — Now</div>
+          <div class="timeline-content">
+            <h4>R&D Cybersecurity Leader</h4>
+            <span class="timeline-company">Ericsson</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2018 — 2022</div>
+          <div class="timeline-content">
+            <h4>Senior Information Security Manager</h4>
+            <span class="timeline-company">Fujitsu</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2017 — 2018</div>
+          <div class="timeline-content">
+            <h4>Senior Security Specialist</h4>
+            <span class="timeline-company">DXC Technology</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2016 — 2017</div>
+          <div class="timeline-content">
+            <h4>Cyber Security Consultant</h4>
+            <span class="timeline-company">Capgemini</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2011 — 2016</div>
+          <div class="timeline-content">
+            <h4>Security Verification Specialist</h4>
+            <span class="timeline-company">Ericsson</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section class="section" id="contact">
-    <div class="container contact-container">
-      <h2 class="section-label reveal">Contact</h2>
-      <h3 class="contact-title reveal" data-en="Let's connect" data-pl="Skontaktuj się" data-sv="Hör av dig">Let's connect</h3>
-      <div class="contact-links reveal">
-        <a href="https://www.linkedin.com/in/damianbiniarz/" target="_blank" class="contact-link">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          LinkedIn
+  <section class="section section-alt" id="contact">
+    <div class="container contact-wrap">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title" data-en="Get in Touch" data-pl="Kontakt" data-sv="Kontakt">Get in Touch</h2>
+      </div>
+      <div class="contact-grid">
+        <a href="https://www.linkedin.com/in/damianbiniarz/" target="_blank" class="contact-card">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <span>LinkedIn</span>
         </a>
-        <a href="mailto:damianbiniarz@gmail.com" class="contact-link">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
-          Email
+        <a href="mailto:damianbiniarz@gmail.com" class="contact-card">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+          <span>Email</span>
         </a>
       </div>
     </div>
@@ -138,9 +217,12 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <p>© 2026 Damian Biniarz. All rights reserved.</p>
+    <img src="astronaut.png" alt="" class="footer-astro">
+    <p>© 2026 Damian Biniarz</p>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

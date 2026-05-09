@@ -1,111 +1,104 @@
-// === REVEAL ON SCROLL ===
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-reveals.forEach((el, i) => {
-  el.style.transitionDelay = (i % 5) * 0.1 + 's';
-  observer.observe(el);
-});
+// === STARS BACKGROUND ===
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+let stars = [];
 
-// === CURSOR GLOW ===
-const glow = document.getElementById('cursorGlow');
-if (window.matchMedia('(pointer: fine)').matches) {
-  document.addEventListener('mousemove', (e) => {
-    glow.style.left = e.clientX + 'px';
-    glow.style.top = e.clientY + 'px';
-    glow.style.opacity = '1';
-  });
-  document.addEventListener('mouseleave', () => glow.style.opacity = '0');
+function initStars() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  stars = Array.from({ length: 120 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 1.5 + 0.3,
+    a: Math.random(),
+    speed: Math.random() * 0.5 + 0.1
+  }));
 }
 
-// === HERO TEXT ANIMATION ===
-document.addEventListener('DOMContentLoaded', () => {
-  // Show all hero reveals immediately
-  document.querySelectorAll('.hero .reveal').forEach((el, i) => {
-    setTimeout(() => el.classList.add('visible'), 300 + i * 150);
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  stars.forEach(s => {
+    s.a += s.speed * 0.01;
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(200, 200, 255, ${0.3 + Math.sin(s.a) * 0.3})`;
+    ctx.fill();
   });
+  requestAnimationFrame(drawStars);
+}
 
-  const lines = document.querySelectorAll('.hero-line');
-  lines.forEach((line, i) => {
-    line.style.opacity = '0';
-    line.style.transform = 'translateY(60px) rotateX(-15deg)';
-    line.style.transition = `all 1s cubic-bezier(0.16, 1, 0.3, 1) ${0.2 + i * 0.15}s`;
-    setTimeout(() => {
-      line.style.opacity = '1';
-      line.style.transform = 'translateY(0) rotateX(0)';
-    }, 50);
+initStars();
+drawStars();
+window.addEventListener('resize', initStars);
+
+// === GSAP ANIMATIONS ===
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero entrance
+const tl = gsap.timeline({ delay: 0.3 });
+tl.to('.line-inner', {
+  y: 0, duration: 1.2, stagger: 0.15,
+  ease: 'power4.out'
+})
+.to('.hero-badge', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.8')
+.to('.hero-sub', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6')
+.to('.hero-btns', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.5')
+.from('.hero-img-wrap', { scale: 0.8, opacity: 0, duration: 1, ease: 'power3.out' }, '-=1')
+.from('.floating-astro', { x: 50, opacity: 0, duration: 0.8, ease: 'back.out(2)' }, '-=0.5');
+
+// Scroll animations for sections
+gsap.utils.toArray('.section-header, .about-lead, .about-text p, .stat-card, .app-card, .timeline-item, .contact-card').forEach(el => {
+  gsap.from(el, {
+    y: 40, opacity: 0, duration: 0.8,
+    ease: 'power3.out',
+    scrollTrigger: { trigger: el, start: 'top 85%' }
   });
 });
 
-// === PARALLAX ON SCROLL ===
+// Parallax hero image on scroll
+gsap.to('.hero-right', {
+  y: -80,
+  scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
+});
+
+// Marquee speed up on scroll
+gsap.to('.marquee-track', {
+  x: '-=200',
+  scrollTrigger: { trigger: '.marquee', start: 'top bottom', end: 'bottom top', scrub: 2 }
+});
+
+// Counter animation
+const counters = document.querySelectorAll('[data-count]');
+counters.forEach(el => {
+  const target = parseInt(el.dataset.count);
+  ScrollTrigger.create({
+    trigger: el,
+    start: 'top 85%',
+    onEnter: () => {
+      gsap.to(el, {
+        innerText: target,
+        duration: 1.5,
+        snap: { innerText: 1 },
+        ease: 'power2.out',
+        onUpdate: function() { el.textContent = Math.round(parseFloat(el.textContent)) + '+'; }
+      });
+    },
+    once: true
+  });
+});
+
+// Nav hide/show on scroll
+let lastScroll = 0;
 window.addEventListener('scroll', () => {
-  const scrolled = window.scrollY;
-  const hero = document.querySelector('.hero-content');
-  if (hero && scrolled < window.innerHeight) {
-    hero.style.transform = `translateY(${scrolled * 0.3}px)`;
-    hero.style.opacity = 1 - scrolled / (window.innerHeight * 0.8);
+  const nav = document.getElementById('nav');
+  if (window.scrollY > lastScroll && window.scrollY > 100) {
+    nav.style.transform = 'translateY(-100%)';
+  } else {
+    nav.style.transform = 'translateY(0)';
   }
+  lastScroll = window.scrollY;
 });
-
-// === MAGNETIC BUTTONS ===
-document.querySelectorAll('.btn, .app-card').forEach(el => {
-  el.addEventListener('mousemove', (e) => {
-    const rect = el.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) * 0.1;
-    const y = (e.clientY - rect.top - rect.height / 2) * 0.1;
-    el.style.transform = `translateY(-8px) translate(${x}px, ${y}px)`;
-  });
-  el.addEventListener('mouseleave', () => {
-    el.style.transform = '';
-  });
-});
-
-// === COUNTER ANIMATION ===
-const statNumbers = document.querySelectorAll('.stat-number');
-const counterObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const el = entry.target;
-      const text = el.textContent;
-      const num = parseInt(text);
-      if (!isNaN(num)) {
-        let current = 0;
-        const suffix = text.replace(/\d+/, '');
-        const step = Math.ceil(num / 30);
-        const interval = setInterval(() => {
-          current += step;
-          if (current >= num) { current = num; clearInterval(interval); }
-          el.textContent = current + suffix;
-        }, 30);
-      }
-      counterObserver.unobserve(el);
-    }
-  });
-}, { threshold: 0.5 });
-statNumbers.forEach(el => counterObserver.observe(el));
-
-// === TEXT SCRAMBLE FOR BRANDS ===
-document.querySelectorAll('.brand').forEach(el => {
-  const original = el.textContent;
-  el.addEventListener('mouseenter', () => {
-    let iterations = 0;
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-    const interval = setInterval(() => {
-      el.textContent = original.split('').map((c, i) => {
-        if (i < iterations) return original[i];
-        return chars[Math.floor(Math.random() * chars.length)];
-      }).join('');
-      iterations += 1 / 2;
-      if (iterations >= original.length) { el.textContent = original; clearInterval(interval); }
-    }, 30);
-  });
-});
+document.getElementById('nav').style.transition = 'transform 0.3s ease';
 
 // === LANGUAGE SWITCH ===
 let currentLang = 'en';
@@ -115,18 +108,26 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
     document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     document.querySelectorAll('[data-en]').forEach(el => {
-      const text = el.getAttribute(`data-${currentLang}`) || el.getAttribute('data-en');
-      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = text;
-      else el.innerHTML = text;
+      el.innerHTML = el.getAttribute(`data-${currentLang}`) || el.getAttribute('data-en');
     });
   });
 });
 
-// === SMOOTH NAV ===
+// === SMOOTH SCROLL ===
 document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', (e) => {
+  a.addEventListener('click', e => {
     e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth' });
+    document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// === APP CARD GLOW FOLLOW ===
+document.querySelectorAll('.app-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.querySelector('.app-card-glow').style.background =
+      `radial-gradient(circle at ${x}% ${y}%, rgba(108,99,255,0.12) 0%, transparent 60%)`;
   });
 });
