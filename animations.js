@@ -1,5 +1,13 @@
 gsap.registerPlugin(ScrollTrigger);
 
+// Content shifts opposite to particles
+gsap.utils.toArray('.section .container').forEach(function(el, i) {
+  gsap.to(el, {
+    x: (i % 2 === 0) ? 60 : -60,
+    scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 2 }
+  });
+});
+
 // ORB PARALLAX
 gsap.to('.orb1', { y: -200, x: 100, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2 } });
 gsap.to('.orb2', { y: 150, x: -80, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 3 } });

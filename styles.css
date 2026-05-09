@@ -93,7 +93,8 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); over
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
 /* === SECTIONS === */
-.section { padding: 120px 40px; position: relative; }
+.section { padding: 120px 40px; position: relative; z-index: 1; }
+.section .container { transition: transform 0.3s ease; }
 .section-dark { background: var(--bg2); }
 .container { max-width: 1000px; margin: 0 auto; }
 .label { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 32px; }

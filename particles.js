@@ -18,8 +18,13 @@
 
   // Fade out particles on scroll
   window.addEventListener('scroll', function() {
-    var opacity = 1 - (window.scrollY / (window.innerHeight * 0.7));
-    canvas.style.opacity = Math.max(0, opacity);
+    var scrollY = window.scrollY;
+    var vh = window.innerHeight;
+    // Move particles left/right based on scroll
+    var offset = Math.sin(scrollY * 0.002) * 2.5;
+    particles.position.x = offset;
+    // Keep visible but shift out of text area
+    canvas.style.opacity = Math.max(0.3, 1 - scrollY / (vh * 2));
   });
 
   camera.position.z = 4;
