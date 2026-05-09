@@ -16,6 +16,12 @@
   canvas.style.pointerEvents = 'none';
   document.body.prepend(canvas);
 
+  // Fade out particles on scroll
+  window.addEventListener('scroll', function() {
+    var opacity = 1 - (window.scrollY / (window.innerHeight * 0.7));
+    canvas.style.opacity = Math.max(0, opacity);
+  });
+
   camera.position.z = 4;
 
   // Create particles in a sphere/shield shape
