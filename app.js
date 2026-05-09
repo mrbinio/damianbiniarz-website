@@ -1,31 +1,15 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// === SMOOTH SCROLL (Lenis-like via GSAP) ===
-// ScrollTrigger already handles smooth scrubbing
+// === HERO ENTRANCE (immediate) ===
+const heroTl = gsap.timeline({ delay: 0.3 });
+heroTl
+  .to('.char', { y: 0, duration: 0.7, stagger: 0.025, ease: 'power4.out' })
+  .to('.hero-tag', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3')
+  .to('.hero-roles', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.2')
+  .to('.hero-cta', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.1')
+  .from('.hero-astro', { x: -100, opacity: 0, duration: 1, ease: 'power3.out' }, 0.5);
 
-// === INTRO ANIMATION ===
-const introTl = gsap.timeline();
-introTl
-  .to('.intro-line', { y: 0, duration: 0.8, stagger: 0.1, ease: 'power4.out', delay: 0.2 })
-  .to('.intro-line', { y: '-110%', duration: 0.6, stagger: 0.05, ease: 'power3.in', delay: 0.4 })
-  .to('.intro', { clipPath: 'inset(0% 0% 100% 0%)', duration: 0.8, ease: 'power4.inOut' })
-  .set('.intro', { display: 'none' })
-  .add(() => animateHero());
-
-// === HERO ENTRANCE ===
-function animateHero() {
-  const heroTl = gsap.timeline();
-  heroTl
-    .to('.char', { y: 0, duration: 0.7, stagger: 0.025, ease: 'power4.out' })
-    .to('.hero-tag', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3')
-    .to('.hero-roles', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.2')
-    .to('.hero-desc', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.15')
-    .to('.hero-cta', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.1')
-    
-
-    .from('.astronaut-float', { y: -50, opacity: 0, duration: 0.8, ease: 'back.out(2)' }, 1)
-}
-gsap.set('.hero-tag, .hero-roles, .hero-desc, .hero-cta', { y: 30, opacity: 0 });
+gsap.set('.hero-tag, .hero-roles, .hero-cta', { y: 30, opacity: 0 });
 
 // === HERO SCROLL-LINKED ANIMATIONS ===
 // Title splits apart on scroll
@@ -37,11 +21,10 @@ gsap.to('.hero-title .char-wrap:last-child', {
   x: 100, opacity: 0,
   scrollTrigger: { trigger: '.hero', start: '20% top', end: '60% top', scrub: 1 }
 });
-gsap.to('.hero-content', {
   y: -100,
   scrollTrigger: { trigger: '.hero', start: '30% top', end: '80% top', scrub: 1 }
 });
-gsap.to('.hero-astro', { y: -100, scrollTrigger: { trigger: '.hero', start: '20% top', end: '70% top', scrub: 1 } });
+gsap.to('.hero-astro', { y: -80, x: 50, scrollTrigger: { trigger: '.hero', start: '20% top', end: '80% top', scrub: 1 } });
   y: -150, scale: 0.85, rotation: -3,
   scrollTrigger: { trigger: '.hero', start: '20% top', end: '70% top', scrub: 1 }
 });
