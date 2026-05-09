@@ -1,56 +1,81 @@
 gsap.registerPlugin(ScrollTrigger);
 
+// === INTRO ANIMATION ===
+const introTl = gsap.timeline();
+introTl
+  .to('.intro-line', { y: 0, duration: 0.8, stagger: 0.1, ease: 'power4.out', delay: 0.2 })
+  .to('.intro-line', { y: -110, duration: 0.6, stagger: 0.05, ease: 'power3.in', delay: 0.4 })
+  .to('.intro', { yPercent: -100, duration: 0.8, ease: 'power4.inOut' })
+  .set('.intro', { display: 'none' })
+  .add(() => animateHero());
+
 // === HERO ENTRANCE ===
-const chars = document.querySelectorAll('.char');
-const tl = gsap.timeline({ delay: 0.5 });
+function animateHero() {
+  const heroTl = gsap.timeline();
 
-// Characters fly in one by one
-chars.forEach((char, i) => {
-  tl.to(char, { y: 0, duration: 0.6, ease: 'power4.out' }, i * 0.04);
-});
-
-// Then other elements
-tl.to('.hero-tag', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
+  // Chars fly in
+  heroTl.to('.char', {
+    y: 0, duration: 0.8, stagger: 0.03, ease: 'power4.out'
+  })
+  .to('.hero-tag', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
   .to('.hero-roles', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
   .to('.hero-desc', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.2')
   .to('.hero-cta', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.2')
-  .from('.hero-photo-wrap', { scale: 0.9, opacity: 0, duration: 1, ease: 'power3.out' }, 0.3)
-  .from('.float-el', { scale: 0, opacity: 0, duration: 0.5, stagger: 0.1, ease: 'back.out(3)' }, 0.8);
+  .from('.hero-photo-wrap', {
+    clipPath: 'inset(100% 0% 0% 0%)', duration: 1.2, ease: 'power4.out'
+  }, 0.2)
+  .from('.float-el', { scale: 0, opacity: 0, duration: 0.5, stagger: 0.08, ease: 'back.out(3)' }, 0.8)
+  .from('.photo-border', { scale: 1.3, opacity: 0, duration: 1, ease: 'power3.out' }, 0.6);
+}
 
-// Set initial states for animated elements
 gsap.set('.hero-tag, .hero-roles, .hero-desc, .hero-cta', { y: 20 });
+gsap.set('.hero-photo-wrap', { clipPath: 'inset(100% 0% 0% 0%)' });
 
-// === SCROLL ANIMATIONS ===
-// Parallax orbs
-gsap.to('.orb-1', { y: -150, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2 } });
-gsap.to('.orb-2', { y: 100, x: -50, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 3 } });
+// === SCROLL PARALLAX ===
+gsap.to('.orb-1', { y: -200, rotation: 20, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2 } });
+gsap.to('.orb-2', { y: 150, x: -80, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 3 } });
+gsap.to('.orb-3', { y: -100, x: 60, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2.5 } });
 
-// Hero parallax
-gsap.to('.hero-visual', { y: -100, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 } });
-gsap.to('.hero-content', { y: -50, opacity: 0, scrollTrigger: { trigger: '.hero', start: '60% top', end: 'bottom top', scrub: 1 } });
+// Hero fades out on scroll
+gsap.to('.hero-content', { y: -80, opacity: 0, scrollTrigger: { trigger: '.hero', start: '50% top', end: 'bottom top', scrub: 1 } });
+gsap.to('.hero-visual', { y: -120, scale: 0.9, scrollTrigger: { trigger: '.hero', start: '40% top', end: 'bottom top', scrub: 1 } });
 
-// Section reveals
+// === SECTION ANIMATIONS ===
 gsap.utils.toArray('.section-header').forEach(el => {
-  gsap.from(el, { x: -30, opacity: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
+  const tl = gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 85%' } });
+  tl.from(el.querySelector('.section-num'), { x: -20, opacity: 0, duration: 0.5 })
+    .from(el.querySelector('.section-line'), { scaleX: 0, duration: 0.4, transformOrigin: 'left' }, '-=0.2')
+    .from(el.querySelector('.section-title'), { x: -20, opacity: 0, duration: 0.5 }, '-=0.2');
 });
 
-gsap.utils.toArray('.about-headline, .about-body, .stat-box').forEach((el, i) => {
-  gsap.from(el, { y: 30, opacity: 0, duration: 0.7, delay: i * 0.05, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
+gsap.utils.toArray('.about-headline, .about-body').forEach(el => {
+  gsap.from(el, { y: 40, opacity: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
+});
+
+gsap.utils.toArray('.stat-box').forEach((el, i) => {
+  gsap.from(el, { y: 50, opacity: 0, rotation: 3, duration: 0.7, delay: i * 0.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
 });
 
 gsap.utils.toArray('.app-card').forEach((el, i) => {
-  gsap.from(el, { y: 40, opacity: 0, duration: 0.6, delay: i * 0.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
+  gsap.from(el, { y: 60, opacity: 0, scale: 0.95, duration: 0.8, delay: i * 0.12, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
 });
 
 gsap.utils.toArray('.exp-item').forEach((el, i) => {
-  gsap.from(el, { y: 20, opacity: 0, duration: 0.5, delay: i * 0.08, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
+  gsap.from(el, { x: -50, opacity: 0, duration: 0.6, delay: i * 0.08, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
 });
 
-// Contact big text
+// Contact big text scale
 gsap.from('.contact-big', {
-  scale: 0.8, opacity: 0, duration: 1, ease: 'power3.out',
-  scrollTrigger: { trigger: '.contact-big', start: 'top 80%' }
+  scale: 0.5, opacity: 0, duration: 1.2, ease: 'power3.out',
+  scrollTrigger: { trigger: '.contact-big', start: 'top 85%' }
 });
+
+gsap.utils.toArray('.c-link').forEach((el, i) => {
+  gsap.from(el, { y: 30, opacity: 0, duration: 0.5, delay: 0.3 + i * 0.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 90%' } });
+});
+
+// Marquee speed on scroll
+gsap.to('.marquee-track', { x: '-=300', scrollTrigger: { trigger: '.marquee', start: 'top bottom', end: 'bottom top', scrub: 2 } });
 
 // === COUNTER ANIMATION ===
 document.querySelectorAll('[data-count]').forEach(el => {
@@ -60,7 +85,7 @@ document.querySelectorAll('[data-count]').forEach(el => {
     onEnter: () => {
       let obj = { val: 0 };
       gsap.to(obj, {
-        val: target, duration: 1.5, ease: 'power2.out',
+        val: target, duration: 2, ease: 'power2.out',
         onUpdate: () => { el.textContent = Math.round(obj.val); }
       });
     }, once: true
@@ -76,22 +101,25 @@ window.addEventListener('scroll', () => {
 });
 
 // === MOUSE PARALLAX ON HERO ===
-document.querySelector('.hero').addEventListener('mousemove', (e) => {
-  const x = (e.clientX / window.innerWidth - 0.5) * 20;
-  const y = (e.clientY / window.innerHeight - 0.5) * 20;
-  gsap.to('.hero-photo-wrap', { x: x * 0.5, y: y * 0.5, duration: 0.8, ease: 'power2.out' });
-  gsap.to('.float-el', { x: x * -0.8, y: y * -0.8, duration: 1, ease: 'power2.out' });
-  gsap.to('.orb-1', { x: x * 2, y: y * 2, duration: 2 });
+document.querySelector('.hero')?.addEventListener('mousemove', (e) => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 30;
+  const y = (e.clientY / window.innerHeight - 0.5) * 30;
+  gsap.to('.hero-photo-wrap', { x: x * 0.4, y: y * 0.4, rotation: x * 0.05, duration: 1, ease: 'power2.out' });
+  gsap.to('.float-el', { x: x * -0.6, y: y * -0.6, duration: 1.2, ease: 'power2.out' });
 });
 
-// === APP CARD GLOW FOLLOW ===
+// === APP CARD GLOW ===
 document.querySelectorAll('.app-card').forEach(card => {
   card.addEventListener('mousemove', e => {
     const rect = card.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     const glow = card.querySelector('.app-card-glow');
-    if (glow) glow.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(124,92,252,0.12) 0%, transparent 60%)`;
+    if (glow) glow.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(124,92,252,0.15) 0%, transparent 50%)`;
+    glow.style.opacity = '1';
+  });
+  card.addEventListener('mouseleave', () => {
+    card.querySelector('.app-card-glow').style.opacity = '0';
   });
 });
 

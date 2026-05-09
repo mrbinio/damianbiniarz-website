@@ -23,6 +23,26 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* === INTRO === */
+.intro {
+  position: fixed; inset: 0; z-index: 999;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+}
+.intro-text {
+  display: flex; flex-direction: column; align-items: center;
+  font-family: var(--display);
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: 700; letter-spacing: -3px;
+  overflow: hidden;
+}
+.intro-line {
+  display: block;
+  transform: translateY(110%);
+}
+.intro.done { pointer-events: none; }
+
 /* === BACKGROUND === */
 .grid-bg {
   position: fixed; inset: 0; z-index: 0;
@@ -130,35 +150,20 @@ body {
 .hero-photo-wrap {
   width: 360px; height: 440px;
   position: relative;
-  border-radius: 24px;
-  overflow: hidden;
 }
 .hero-photo {
   width: 100%; height: 100%;
   object-fit: cover; object-position: top;
-  mix-blend-mode: luminosity;
-  transition: all 0.5s;
-}
-.hero-photo-wrap:hover .hero-photo { mix-blend-mode: normal; filter: none; }
-.hero-photo-wrap::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(to bottom, transparent 60%, var(--bg) 100%),
-              linear-gradient(to right, var(--bg) 0%, transparent 20%, transparent 80%, var(--bg) 100%);
-  border-radius: 24px;
-  pointer-events: none;
 }
 .photo-border {
-  position: absolute; inset: 0;
+  position: absolute; inset: -4px;
   border: 1px solid var(--accent);
   border-radius: 24px;
-  opacity: 0.4;
-  transition: opacity 0.3s;
+  opacity: 0.3;
 }
-.hero-photo-wrap:hover .photo-border { opacity: 1; }
 .photo-glitch {
   position: absolute; inset: 0;
-  background: linear-gradient(transparent 0%, rgba(124,92,252,0.03) 50%, transparent 100%);
+  background: linear-gradient(transparent 0%, rgba(124,92,252,0.05) 50%, transparent 100%);
   animation: glitchScan 4s linear infinite;
 }
 @keyframes glitchScan {
