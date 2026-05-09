@@ -1,23 +1,25 @@
-// === INTRO LOADER (no dependencies) ===
-document.body.style.overflow = 'hidden';
-var progress = 0;
-var bar = document.getElementById('introBar');
-var counter = document.getElementById('introCounter');
-var intro = document.getElementById('intro');
+// === LOADER (dala-style: counter + text reveal + fade out) ===
+(function() {
+  var loader = document.getElementById('loader');
+  var num = document.getElementById('loaderNum');
+  var progress = 0;
 
-var progressInterval = setInterval(function() {
-  progress += Math.random() * 8 + 2;
-  if (progress >= 100) {
-    progress = 100;
-    clearInterval(progressInterval);
-    setTimeout(function() {
-      intro.classList.add('done');
-      document.body.style.overflow = '';
-    }, 400);
-  }
-  bar.style.width = progress + '%';
-  counter.textContent = Math.round(progress) + '%';
-}, 80);
+  document.body.style.overflow = 'hidden';
+
+  var interval = setInterval(function() {
+    progress += Math.floor(Math.random() * 12) + 3;
+    if (progress > 100) progress = 100;
+    num.textContent = progress;
+
+    if (progress >= 100) {
+      clearInterval(interval);
+      setTimeout(function() {
+        loader.classList.add('hidden');
+        document.body.style.overflow = '';
+      }, 600);
+    }
+  }, 60);
+})();
 
 // === LANGUAGE ===
 document.querySelectorAll('.lang-btn').forEach(function(btn) {
@@ -33,5 +35,9 @@ document.querySelectorAll('.lang-btn').forEach(function(btn) {
 
 // === SMOOTH SCROLL ===
 document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-  a.addEventListener('click', function(e) { e.preventDefault(); document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' }); });
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    var target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
 });
