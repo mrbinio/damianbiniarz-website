@@ -1,81 +1,115 @@
 gsap.registerPlugin(ScrollTrigger);
 
+// === SMOOTH SCROLL (Lenis-like via GSAP) ===
+// ScrollTrigger already handles smooth scrubbing
+
 // === INTRO ANIMATION ===
 const introTl = gsap.timeline();
 introTl
   .to('.intro-line', { y: 0, duration: 0.8, stagger: 0.1, ease: 'power4.out', delay: 0.2 })
-  .to('.intro-line', { y: -110, duration: 0.6, stagger: 0.05, ease: 'power3.in', delay: 0.4 })
-  .to('.intro', { yPercent: -100, duration: 0.8, ease: 'power4.inOut' })
+  .to('.intro-line', { y: '-110%', duration: 0.6, stagger: 0.05, ease: 'power3.in', delay: 0.4 })
+  .to('.intro', { clipPath: 'inset(0% 0% 100% 0%)', duration: 0.8, ease: 'power4.inOut' })
   .set('.intro', { display: 'none' })
   .add(() => animateHero());
 
 // === HERO ENTRANCE ===
 function animateHero() {
   const heroTl = gsap.timeline();
-
-  // Chars fly in
-  heroTl.to('.char', {
-    y: 0, duration: 0.8, stagger: 0.03, ease: 'power4.out'
-  })
-  .to('.hero-tag', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-  .to('.hero-roles', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
-  .to('.hero-desc', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.2')
-  .to('.hero-cta', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.2')
-  .from('.hero-photo-wrap', {
-    clipPath: 'inset(100% 0% 0% 0%)', duration: 1.2, ease: 'power4.out'
-  }, 0.2)
-  .from('.float-el', { scale: 0, opacity: 0, duration: 0.5, stagger: 0.08, ease: 'back.out(3)' }, 0.8)
-  .from('.photo-border', { scale: 1.3, opacity: 0, duration: 1, ease: 'power3.out' }, 0.6);
+  heroTl
+    .to('.char', { y: 0, duration: 0.7, stagger: 0.025, ease: 'power4.out' })
+    .to('.hero-tag', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3')
+    .to('.hero-roles', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.2')
+    .to('.hero-desc', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.15')
+    .to('.hero-cta', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.1')
+    .fromTo('.hero-photo-wrap', { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' },
+      { clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)', duration: 1.2, ease: 'power4.inOut' }, 0.3)
+    .from('.float-el', { scale: 0, opacity: 0, duration: 0.4, stagger: 0.06, ease: 'back.out(3)' }, 1);
 }
+gsap.set('.hero-tag, .hero-roles, .hero-desc, .hero-cta', { y: 30, opacity: 0 });
 
-gsap.set('.hero-tag, .hero-roles, .hero-desc, .hero-cta', { y: 20 });
-gsap.set('.hero-photo-wrap', { clipPath: 'inset(100% 0% 0% 0%)' });
-
-// === SCROLL PARALLAX ===
-gsap.to('.orb-1', { y: -200, rotation: 20, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2 } });
-gsap.to('.orb-2', { y: 150, x: -80, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 3 } });
-gsap.to('.orb-3', { y: -100, x: 60, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2.5 } });
-
-// Hero fades out on scroll
-gsap.to('.hero-content', { y: -80, opacity: 0, scrollTrigger: { trigger: '.hero', start: '50% top', end: 'bottom top', scrub: 1 } });
-gsap.to('.hero-visual', { y: -120, scale: 0.9, scrollTrigger: { trigger: '.hero', start: '40% top', end: 'bottom top', scrub: 1 } });
-
-// === SECTION ANIMATIONS ===
-gsap.utils.toArray('.section-header').forEach(el => {
-  const tl = gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 85%' } });
-  tl.from(el.querySelector('.section-num'), { x: -20, opacity: 0, duration: 0.5 })
-    .from(el.querySelector('.section-line'), { scaleX: 0, duration: 0.4, transformOrigin: 'left' }, '-=0.2')
-    .from(el.querySelector('.section-title'), { x: -20, opacity: 0, duration: 0.5 }, '-=0.2');
+// === HERO SCROLL-LINKED ANIMATIONS ===
+// Title splits apart on scroll
+gsap.to('.hero-title .char-wrap:first-child', {
+  x: -100, opacity: 0,
+  scrollTrigger: { trigger: '.hero', start: '20% top', end: '60% top', scrub: 1 }
+});
+gsap.to('.hero-title .char-wrap:last-child', {
+  x: 100, opacity: 0,
+  scrollTrigger: { trigger: '.hero', start: '20% top', end: '60% top', scrub: 1 }
+});
+gsap.to('.hero-content', {
+  y: -100,
+  scrollTrigger: { trigger: '.hero', start: '30% top', end: '80% top', scrub: 1 }
+});
+gsap.to('.hero-visual', {
+  y: -150, scale: 0.85, rotation: -3,
+  scrollTrigger: { trigger: '.hero', start: '20% top', end: '70% top', scrub: 1 }
 });
 
-gsap.utils.toArray('.about-headline, .about-body').forEach(el => {
-  gsap.from(el, { y: 40, opacity: 0, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
+// === MARQUEE SCROLL SPEED ===
+gsap.to('.marquee-track', {
+  x: '-=500',
+  scrollTrigger: { trigger: '.marquee', start: 'top bottom', end: 'bottom top', scrub: 0.5 }
 });
 
+// === ABOUT SECTION — PINNED TEXT REVEAL ===
+gsap.from('.about-headline', {
+  y: 80, opacity: 0, duration: 1,
+  scrollTrigger: { trigger: '.about-headline', start: 'top 80%', end: 'top 50%', scrub: 1 }
+});
+gsap.from('.about-body', {
+  y: 60, opacity: 0,
+  scrollTrigger: { trigger: '.about-body', start: 'top 85%', end: 'top 60%', scrub: 1 }
+});
+
+// Stats fly in with rotation
 gsap.utils.toArray('.stat-box').forEach((el, i) => {
-  gsap.from(el, { y: 50, opacity: 0, rotation: 3, duration: 0.7, delay: i * 0.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
+  gsap.from(el, {
+    y: 80, opacity: 0, rotation: 5 * (i % 2 === 0 ? 1 : -1), scale: 0.8,
+    scrollTrigger: { trigger: el, start: 'top 90%', end: 'top 65%', scrub: 1 }
+  });
 });
 
+// === APPS — CARDS SCALE UP FROM SMALL ===
 gsap.utils.toArray('.app-card').forEach((el, i) => {
-  gsap.from(el, { y: 60, opacity: 0, scale: 0.95, duration: 0.8, delay: i * 0.12, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
+  gsap.from(el, {
+    y: 100, opacity: 0, scale: 0.7, rotation: -2 + i * 2,
+    scrollTrigger: { trigger: el, start: 'top 95%', end: 'top 60%', scrub: 1 }
+  });
 });
 
+// === EXPERIENCE — SLIDE FROM LEFT WITH STAGGER ===
 gsap.utils.toArray('.exp-item').forEach((el, i) => {
-  gsap.from(el, { x: -50, opacity: 0, duration: 0.6, delay: i * 0.08, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
+  gsap.from(el, {
+    x: -100, opacity: 0,
+    scrollTrigger: { trigger: el, start: 'top 90%', end: 'top 70%', scrub: 1 }
+  });
 });
 
-// Contact big text scale
+// === CONTACT — BIG TEXT SCALES ===
 gsap.from('.contact-big', {
-  scale: 0.5, opacity: 0, duration: 1.2, ease: 'power3.out',
-  scrollTrigger: { trigger: '.contact-big', start: 'top 85%' }
+  scale: 0.3, opacity: 0, rotation: -5,
+  scrollTrigger: { trigger: '.contact-big', start: 'top 90%', end: 'top 50%', scrub: 1 }
 });
 
-gsap.utils.toArray('.c-link').forEach((el, i) => {
-  gsap.from(el, { y: 30, opacity: 0, duration: 0.5, delay: 0.3 + i * 0.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 90%' } });
+// === SECTION HEADERS ===
+gsap.utils.toArray('.section-header').forEach(el => {
+  gsap.from(el, {
+    x: -60, opacity: 0,
+    scrollTrigger: { trigger: el, start: 'top 85%', end: 'top 65%', scrub: 1 }
+  });
 });
 
-// Marquee speed on scroll
-gsap.to('.marquee-track', { x: '-=300', scrollTrigger: { trigger: '.marquee', start: 'top bottom', end: 'bottom top', scrub: 2 } });
+// === PARALLAX ORBS ===
+gsap.to('.orb-1', { y: -300, rotation: 45, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2 } });
+gsap.to('.orb-2', { y: 200, x: -100, rotation: -30, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 3 } });
+gsap.to('.orb-3', { y: -150, x: 80, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2.5 } });
+
+// === GRID BG PARALLAX ===
+gsap.to('.grid-bg', {
+  backgroundPosition: '0px -200px',
+  scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1 }
+});
 
 // === COUNTER ANIMATION ===
 document.querySelectorAll('[data-count]').forEach(el => {
@@ -84,10 +118,7 @@ document.querySelectorAll('[data-count]').forEach(el => {
     trigger: el, start: 'top 85%',
     onEnter: () => {
       let obj = { val: 0 };
-      gsap.to(obj, {
-        val: target, duration: 2, ease: 'power2.out',
-        onUpdate: () => { el.textContent = Math.round(obj.val); }
-      });
+      gsap.to(obj, { val: target, duration: 2, ease: 'power2.out', onUpdate: () => { el.textContent = Math.round(obj.val); } });
     }, once: true
   });
 });
@@ -102,10 +133,11 @@ window.addEventListener('scroll', () => {
 
 // === MOUSE PARALLAX ON HERO ===
 document.querySelector('.hero')?.addEventListener('mousemove', (e) => {
-  const x = (e.clientX / window.innerWidth - 0.5) * 30;
-  const y = (e.clientY / window.innerHeight - 0.5) * 30;
-  gsap.to('.hero-photo-wrap', { x: x * 0.4, y: y * 0.4, rotation: x * 0.05, duration: 1, ease: 'power2.out' });
-  gsap.to('.float-el', { x: x * -0.6, y: y * -0.6, duration: 1.2, ease: 'power2.out' });
+  const x = (e.clientX / window.innerWidth - 0.5) * 40;
+  const y = (e.clientY / window.innerHeight - 0.5) * 40;
+  gsap.to('.hero-photo-wrap', { x: x * 0.3, y: y * 0.3, rotation: x * 0.03, duration: 1, ease: 'power2.out' });
+  gsap.to('.float-el', { x: x * -0.5, y: y * -0.5, duration: 1.2, ease: 'power2.out' });
+  gsap.to('.orb-1', { x: x * 1.5, y: y * 1.5, duration: 2 });
 });
 
 // === APP CARD GLOW ===
@@ -115,12 +147,9 @@ document.querySelectorAll('.app-card').forEach(card => {
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     const glow = card.querySelector('.app-card-glow');
-    if (glow) glow.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(124,92,252,0.15) 0%, transparent 50%)`;
-    glow.style.opacity = '1';
+    if (glow) { glow.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(124,92,252,0.15) 0%, transparent 50%)`; glow.style.opacity = '1'; }
   });
-  card.addEventListener('mouseleave', () => {
-    card.querySelector('.app-card-glow').style.opacity = '0';
-  });
+  card.addEventListener('mouseleave', () => { card.querySelector('.app-card-glow').style.opacity = '0'; });
 });
 
 // === LANGUAGE ===
