@@ -21,8 +21,8 @@ function animateHero() {
     .to('.hero-roles', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.2')
     .to('.hero-desc', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.15')
     .to('.hero-cta', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.1')
-    .fromTo('.hero-photo-wrap', { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' },
-      { clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)', duration: 1.2, ease: 'power4.inOut' }, 0.3)
+    
+
     .from('.astronaut-float', { y: -50, opacity: 0, duration: 0.8, ease: 'back.out(2)' }, 1)
 }
 gsap.set('.hero-tag, .hero-roles, .hero-desc, .hero-cta', { y: 30, opacity: 0 });
@@ -41,7 +41,7 @@ gsap.to('.hero-content', {
   y: -100,
   scrollTrigger: { trigger: '.hero', start: '30% top', end: '80% top', scrub: 1 }
 });
-gsap.to('.hero-visual', {
+gsap.to('.hero-astro', { y: -100, scrollTrigger: { trigger: '.hero', start: '20% top', end: '70% top', scrub: 1 } });
   y: -150, scale: 0.85, rotation: -3,
   scrollTrigger: { trigger: '.hero', start: '20% top', end: '70% top', scrub: 1 }
 });
@@ -135,8 +135,8 @@ window.addEventListener('scroll', () => {
 document.querySelector('.hero')?.addEventListener('mousemove', (e) => {
   const x = (e.clientX / window.innerWidth - 0.5) * 40;
   const y = (e.clientY / window.innerHeight - 0.5) * 40;
-  gsap.to('.hero-photo-wrap', { x: x * 0.3, y: y * 0.3, rotation: x * 0.03, duration: 1, ease: 'power2.out' });
-  gsap.to('.astronaut-float', { x: x * -0.5, y: y * -0.5, duration: 1.2, ease: 'power2.out' });
+  
+  
   gsap.to('.orb-1', { x: x * 1.5, y: y * 1.5, duration: 2 });
 });
 

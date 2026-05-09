@@ -48,7 +48,29 @@
 
   <!-- Hero -->
   <section class="hero" id="hero">
-    <div class="hero-content">
+    <!-- Animated scene background -->
+    <div class="scene">
+      <div class="scene-grid"></div>
+      <div class="scene-particles" id="particles"></div>
+      <div class="scene-code code-1">&lt;secure /&gt;</div>
+      <div class="scene-code code-2">{ encrypted }</div>
+      <div class="scene-code code-3">firewall.on()</div>
+      <div class="scene-code code-4">auth: true</div>
+      <div class="scene-code code-5">AI.deploy()</div>
+      <div class="scene-shield shield-1">🛡️</div>
+      <div class="scene-shield shield-2">🔒</div>
+      <div class="scene-shield shield-3">⚡</div>
+    </div>
+
+    <!-- Person in scene - moved to About -->
+
+    <!-- Astronaut floating -->
+    <div class="hero-astro">
+      <img src="astronaut.png" alt="">
+    </div>
+
+    <!-- Text overlay -->
+    <div class="hero-overlay">
       <div class="hero-tag">
         <span class="tag-dot"></span>
         <span data-en="Available for consulting" data-pl="Dostępny na konsultacje" data-sv="Tillgänglig för konsulting">Available for consulting</span>
@@ -64,30 +86,12 @@
         <span class="role-sep">/</span>
         <span class="role" data-en="AI Enthusiast" data-pl="Entuzjasta AI" data-sv="AI-entusiast">AI Enthusiast</span>
       </div>
-      <p class="hero-desc" data-en="17+ years protecting enterprise systems at Ericsson, Fujitsu & Capgemini. Now building AI-powered apps that solve real problems." data-pl="17+ lat ochrony systemów enterprise w Ericsson, Fujitsu i Capgemini. Teraz buduję aplikacje z AI rozwiązujące realne problemy." data-sv="17+ år av att skydda företagssystem på Ericsson, Fujitsu & Capgemini. Nu bygger jag AI-drivna appar som löser verkliga problem.">17+ years protecting enterprise systems at Ericsson, Fujitsu & Capgemini. Now building AI-powered apps that solve real problems.</p>
       <div class="hero-cta">
         <a href="#apps" class="btn-main"><span>Explore Apps</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         <a href="https://www.linkedin.com/in/damianbiniarz/" target="_blank" class="btn-outline">LinkedIn</a>
       </div>
     </div>
-    <div class="hero-visual">
-      <div class="hero-photo-wrap" id="heroPhoto">
-        <img src="damian biniarz.png" alt="Damian Biniarz" class="hero-photo">
-        <div class="photo-glitch"></div>
-        <div class="photo-border"></div>
-      </div>
-      <!-- Animated space scene -->
-      <div class="space-scene">
-        <div class="astronaut-float"><img src="astronaut.png" alt=""></div>
-        <div class="orbit orbit-1"><div class="orbit-icon">🛡️</div></div>
-        <div class="orbit orbit-2"><div class="orbit-icon">💻</div></div>
-        <div class="orbit orbit-3"><div class="orbit-icon">🔒</div></div>
-        <div class="planet"></div>
-        <div class="star s1"></div><div class="star s2"></div><div class="star s3"></div>
-        <div class="star s4"></div><div class="star s5"></div><div class="star s6"></div>
-        <div class="star s7"></div><div class="star s8"></div>
-      </div>
-    </div>
+
     <div class="scroll-indicator">
       <span>SCROLL</span>
       <div class="scroll-bar"><div class="scroll-progress"></div></div>
@@ -113,16 +117,15 @@
         <h2 class="section-title" data-en="About" data-pl="O Mnie" data-sv="Om Mig">About</h2>
       </div>
       <div class="about-grid">
+        <div class="about-photo">
+          <img src="damian-nobg.png" alt="Damian Biniarz" class="about-img">
+        </div>
         <div class="about-left">
           <h3 class="about-headline" data-en="I secure systems by day and build apps by night." data-pl="W dzień zabezpieczam systemy, w nocy buduję aplikacje." data-sv="Jag säkrar system på dagen och bygger appar på natten.">I secure systems by day and build apps by night.</h3>
           <p class="about-body" data-en="Currently R&D Cybersecurity Leader at Ericsson — advising senior stakeholders on security strategy, coordinating incidents, and driving security assurance across engineering teams." data-pl="Obecnie Lider Cyberbezpieczeństwa R&D w Ericsson — doradzam kadrze zarządzającej, koordynuję incydenty i prowadzę zapewnienie bezpieczeństwa w zespołach inżynieryjnych." data-sv="Just nu R&D Cybersäkerhetsledare på Ericsson — rådger ledningen om säkerhetsstrategi, koordinerar incidenter och driver säkerhetsarbete i ingenjörsteam.">Currently R&D Cybersecurity Leader at Ericsson — advising senior stakeholders on security strategy, coordinating incidents, and driving security assurance across engineering teams.</p>
-        </div>
-        <div class="about-right">
           <div class="stat-row">
             <div class="stat-box"><span class="stat-val" data-count="17">0</span><span class="stat-plus">+</span><span class="stat-lbl" data-en="Years" data-pl="Lat" data-sv="År">Years</span></div>
             <div class="stat-box"><span class="stat-val">CISSP</span><span class="stat-lbl" data-en="Certified" data-pl="Certyfikat" data-sv="Cert.">Certified</span></div>
-          </div>
-          <div class="stat-row">
             <div class="stat-box"><span class="stat-val" data-count="5">0</span><span class="stat-plus">+</span><span class="stat-lbl" data-en="Companies" data-pl="Firm" data-sv="Företag">Companies</span></div>
             <div class="stat-box"><span class="stat-val" data-count="3">0</span><span class="stat-plus"></span><span class="stat-lbl" data-en="Apps" data-pl="Aplikacje" data-sv="Appar">Apps</span></div>
           </div>
