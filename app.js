@@ -38,8 +38,8 @@ gsap.utils.toArray('.about-headline, .about-body, .stat-box').forEach((el, i) =>
   gsap.from(el, { y: 30, opacity: 0, duration: 0.7, delay: i * 0.05, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
 });
 
-gsap.utils.toArray('.app-row').forEach((el, i) => {
-  gsap.from(el, { x: -40, opacity: 0, duration: 0.6, delay: i * 0.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
+gsap.utils.toArray('.app-card').forEach((el, i) => {
+  gsap.from(el, { y: 40, opacity: 0, duration: 0.6, delay: i * 0.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
 });
 
 gsap.utils.toArray('.exp-item').forEach((el, i) => {
@@ -84,13 +84,14 @@ document.querySelector('.hero').addEventListener('mousemove', (e) => {
   gsap.to('.orb-1', { x: x * 2, y: y * 2, duration: 2 });
 });
 
-// === APP ROW HOVER EFFECT ===
-document.querySelectorAll('.app-row').forEach(row => {
-  row.addEventListener('mouseenter', () => {
-    gsap.to(row, { x: 8, duration: 0.3, ease: 'power2.out' });
-  });
-  row.addEventListener('mouseleave', () => {
-    gsap.to(row, { x: 0, duration: 0.3, ease: 'power2.out' });
+// === APP CARD GLOW FOLLOW ===
+document.querySelectorAll('.app-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    const glow = card.querySelector('.app-card-glow');
+    if (glow) glow.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(124,92,252,0.12) 0%, transparent 60%)`;
   });
 });
 
