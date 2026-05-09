@@ -29,6 +29,8 @@
 
   camera.position.z = 4;
 
+  // On mobile, push particles to the side
+
   // Create particles in a sphere/shield shape
   var count = 3000;
   var geometry = new THREE.BufferGeometry();
@@ -78,6 +80,14 @@
 
   var particles = new THREE.Points(geometry, material);
   scene.add(particles);
+
+  // On mobile, push particles to the side and make smaller
+  var isMobile = window.innerWidth < 768;
+  if (isMobile) {
+    camera.position.z = 5.5;
+    particles.position.x = 1.2;
+    particles.position.y = -0.8;
+  }
 
   // Mouse tracking
   var mouse = { x: 0, y: 0 };

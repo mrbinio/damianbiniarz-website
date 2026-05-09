@@ -1,9 +1,10 @@
 gsap.registerPlugin(ScrollTrigger);
 
 // Content shifts opposite to particles
+var shiftAmount = window.innerWidth < 768 ? 40 : 100;
 gsap.utils.toArray('.section .container').forEach(function(el, i) {
   gsap.to(el, {
-    x: (i % 2 === 0) ? 60 : -60,
+    x: (i % 2 === 0) ? shiftAmount : -shiftAmount,
     scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 2 }
   });
 });
