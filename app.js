@@ -1,5 +1,26 @@
 gsap.registerPlugin(ScrollTrigger);
 
+// === INTRO ANIMATION (like dala.craftedbygc.com) ===
+const introWords = document.querySelectorAll('.intro-word');
+const introTl = gsap.timeline({
+  onComplete: () => {
+    document.getElementById('intro').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+});
+
+document.body.style.overflow = 'hidden';
+
+introWords.forEach((word, i) => {
+  introTl
+    .to(word, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: 'power3.out' }, i * 0.8)
+    .to(word, { opacity: 0, y: -30, scale: 1.1, duration: 0.4, ease: 'power2.in' }, i * 0.8 + 0.5);
+});
+
+// Final word stays longer then intro fades
+introTl
+  .to('.intro', { opacity: 0, duration: 0.6, ease: 'power2.inOut' }, '-=0.1');
+
 // === ORB PARALLAX ===
 gsap.to('.orb1', { y: -200, x: 100, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2 } });
 gsap.to('.orb2', { y: 150, x: -80, scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 3 } });
