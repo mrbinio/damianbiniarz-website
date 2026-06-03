@@ -121,6 +121,22 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); over
 .badge { display: inline-block; margin-top: 14px; font-family: var(--mono); font-size: 0.65rem; padding: 3px 10px; border-radius: 10px; border: 1px solid var(--border); color: var(--dim); }
 .badge.live { border-color: var(--accent2); color: var(--accent2); }
 
+/* === SERVICES / AGENCY === */
+.agency-header { display: flex; align-items: center; gap: 24px; margin-bottom: 40px; }
+.agency-logo { width: 60px; height: 60px; border-radius: 12px; background: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.agency-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 12px; }
+.agency-desc { color: var(--dim); font-size: 0.95rem; line-height: 1.7; }
+.accent-link { color: var(--accent2); text-decoration: none; font-weight: 600; transition: color 0.3s; }
+.accent-link:hover { color: var(--accent); }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 40px; }
+.service-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 16px; padding: 28px; transition: all 0.4s; }
+.service-card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 20px 60px rgba(124,92,252,0.1); }
+.service-icon { font-size: 2rem; margin-bottom: 14px; }
+.service-card h3 { font-family: var(--display); font-size: 1.05rem; margin-bottom: 8px; }
+.service-card p { color: var(--dim); font-size: 0.82rem; line-height: 1.5; }
+.agency-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+@media (max-width: 768px) { .agency-header { flex-direction: column; text-align: center; } .agency-cta { justify-content: center; } }
+
 /* === EXPERIENCE === */
 .exp-list { display: flex; flex-direction: column; }
 .exp { display: grid; grid-template-columns: 130px 1fr auto; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--border); align-items: center; transition: all 0.3s; }
