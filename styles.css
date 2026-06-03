@@ -122,9 +122,9 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); over
 .badge.live { border-color: var(--accent2); color: var(--accent2); }
 
 /* === SERVICES / AGENCY === */
-.agency-header { display: flex; align-items: center; gap: 24px; margin-bottom: 40px; }
-.agency-logo { width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.agency-logo img { width: 60px; height: 60px; object-fit: contain; border-radius: 12px; }
+.agency-header { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; }
+.agency-logo { flex-shrink: 0; }
+.agency-logo img { width: 120px; height: auto; border-radius: 8px; }
 .agency-desc { color: var(--dim); font-size: 0.95rem; line-height: 1.7; }
 .accent-link { color: var(--accent2); text-decoration: none; font-weight: 600; transition: color 0.3s; }
 .accent-link:hover { color: var(--accent); }
