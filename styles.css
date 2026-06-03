@@ -135,7 +135,22 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); over
 .service-card h3 { font-family: var(--display); font-size: 1.05rem; margin-bottom: 8px; }
 .service-card p { color: var(--dim); font-size: 0.82rem; line-height: 1.5; }
 .agency-cta { display: flex; gap: 14px; flex-wrap: wrap; }
-@media (max-width: 768px) { .agency-header { flex-direction: column; text-align: center; } .agency-cta { justify-content: center; } }
+
+/* Stats bar */
+.agency-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 48px 0; padding: 32px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.agency-stat { text-align: center; }
+.agency-stat strong { display: block; font-family: var(--display); font-size: 2rem; font-weight: 700; color: var(--accent2); }
+.agency-stat span { font-size: 0.7rem; color: var(--dim); text-transform: uppercase; letter-spacing: 1px; }
+
+/* How we work */
+.subsection-heading { font-family: var(--display); font-size: 1.3rem; font-weight: 600; margin-bottom: 24px; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; }
+.step { padding: 24px; border-left: 2px solid var(--accent); }
+.step-num { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); margin-bottom: 10px; }
+.step h4 { font-family: var(--display); font-size: 1rem; margin-bottom: 8px; }
+.step p { color: var(--dim); font-size: 0.82rem; line-height: 1.6; }
+
+@media (max-width: 768px) { .agency-header { flex-direction: column; text-align: center; } .agency-cta { justify-content: center; } .agency-stats { grid-template-columns: repeat(2, 1fr); } .steps { grid-template-columns: 1fr; } }
 
 /* === EXPERIENCE === */
 .exp-list { display: flex; flex-direction: column; }
