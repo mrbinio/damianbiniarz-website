@@ -123,8 +123,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); over
 
 /* === SERVICES / AGENCY === */
 .agency-header { display: flex; align-items: center; gap: 16px; margin-bottom: 40px; }
-.agency-logo { width: 48px; height: 48px; flex-shrink: 0; overflow: hidden; }
-.agency-logo img { width: 48px; height: auto; margin-top: -5px; }
+.agency-logo { width: 48px; height: 48px; flex-shrink: 0; background: url('Damian Biniarz linkedin logo color.png') top center / contain no-repeat; }
 .agency-desc { color: var(--dim); font-size: 0.95rem; line-height: 1.7; }
 .accent-link { color: var(--accent2); text-decoration: none; font-weight: 600; transition: color 0.3s; }
 .accent-link:hover { color: var(--accent); }
